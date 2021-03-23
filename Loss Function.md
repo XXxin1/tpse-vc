@@ -1,3 +1,13 @@
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML" type="text/javascript"></script>
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true
+    }
+  });
+</script>
+
 ### Mathmatical Formulation of Loss Function
 
 - - -
@@ -18,6 +28,7 @@
 Besides using L1 loss in the spectrogram-level, we also consider the content and style constraints in the feature-level. Due to our U-Net like architecture, we get multi-scale features in different time resolutions, and our goal is changing the speaker style while preserving the lingual content. Then we calculate the sum of the $euclidean distances$ between the converted content or style features and its corresponding origin features. 
 
 $$\mathcal{L}_{content} =  \sum_{\forall l}(\| En_c(G(X_1^n, X_2^n)) - En_c(X_1^n) \|_2)$$
+
 $$\mathcal{L}_{style} =  \sum_{\forall l} (\|SPAttention^{(l)}(En_c(G(X_1^n, X_2^n)), En_s(G(X_1^n, X_2^n))) \\ -  SPAttention^{(l)}(En_c(X_1^n), En_s(X_2^n))  \|_2 )$$
  
  where $l$ is the index of output of encoders, which represents the multi-scale features in  different time resolutions. And it does not seem necessary that using $SPAttention$ for the converted speech, but we believe that it is a chance for considering both style and content, and it helps to learn a ***diagonal attention*** while the content and style come from the same speech. 
@@ -35,6 +46,7 @@ In typical GAN, the discriminator distinguishes  the speech spectrogram is real 
   #### Total Loss
   The overall loss function is a weighted sum of individual loss functions described above,  which can be defined as: 
   $$mathcal{L}_{total}^{G} = \mathcal{L}_{recon} + \lambda_1 \mathcal{L}_{content} + \lambda_2 \mathcal{L}_{style} + \lambda_3 \mathcal{L}_{adv}^{G} $$
+  
   $$\mathcal{L}_{total}^{D} =  \lambda_3 \mathcal{L}_{adv}^{D} $$
 
 
