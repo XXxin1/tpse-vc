@@ -1,14 +1,6 @@
-<<<<<<< HEAD
 # TPSE-VC
 # 1. Preprocessing
 The training and testing dataset is [CSTR VCTK Corpus](https://homepages.inf.ed.ac.uk/jyamagis/page3/page58/page58.html). We also use some preprocess script from [ericwudayi](https://github.com/ericwudayi)/[SkipVQVC](https://github.com/ericwudayi/SkipVQVC) to generate acoustic features.
-=======
-# tpse-vc
-
-We are cleaning the code, and will open source in the furture.
->>>>>>> b5402851506ccb9e2cd0bc8b2f9b0c78be2752f6
-
-
 
 1. processing waveform to acoustic features.
 
