@@ -1,0 +1,47 @@
+SpeakerEncoder:
+    c_in: 80
+    c_h: 128
+    c_out: 128
+    kernel_size: 5
+    bank_size: 8
+    bank_scale: 1
+    c_bank: 128
+    n_conv_blocks: 9
+    subsample: [1, 1, 1, 1, 2, 1, 2, 1, 2]
+    act: 'relu'
+ContentEncoder:
+    c_in: 80
+    c_h: 128
+    c_out: 128
+    kernel_size: 5
+    bank_size: 8
+    bank_scale: 1
+    c_bank: 128
+    n_conv_blocks: 9
+    subsample: [1, 1, 1, 1, 2, 1, 2, 1, 2]
+    act: 'relu'
+Decoder:
+    c_in: 128
+    c_h: 128
+    c_out: 80
+    kernel_size: 5
+    n_conv_blocks: 6
+    upsample: [1, 2, 1, 2, 1, 2]
+    act: 'relu'
+Discriminator:
+    num_classes: 89
+data_loader:
+    batch_size: 64
+optimizer:
+    lr_gen: 0.0001
+    lr_dis: 0.0001
+    beta1: 0.9
+    beta2: 0.999
+    amsgrad: True
+    weight_decay: 0.0001
+lambda:
+    gan_w: 0.02
+    r_w: 1
+    max_grad_norm: 5
+    content_w: 1
+    speaker_w: 1
