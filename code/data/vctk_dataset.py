@@ -11,17 +11,15 @@ def segmenting_or_padding(audios):
     audio = []
     for item in audios:
         item_len = int(item.shape[1])
+        assert item_len >= maxn
         if item_len > maxn:
             rand = np.random.randint(item_len - maxn)
             item_ = item[:, rand:rand + maxn]
         else:
             item_ = item
+   
         audio += [item_]
 
-    for i in range(len(audio)):
-        a = audio[i]
-        a = np.pad(a, ((0, 0), (0, maxn - a.shape[1])), 'reflect')
-        audio[i] = a
 
     return torch.tensor((np.array(audio)))
 
