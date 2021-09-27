@@ -92,7 +92,7 @@ def process_audios(path):
 
     try:
         m = convert_file(path)
-        if m.shape[1] < 100:
+        if m.shape[1] < 128:
             return id, 0
         print(m.shape)
         np.save(out_fp, m, allow_pickle=False)
